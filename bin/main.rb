@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 
-class Interface
+class Scraper
   def start
     welcome
     prompt
