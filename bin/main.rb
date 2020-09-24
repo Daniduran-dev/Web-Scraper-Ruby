@@ -3,6 +3,11 @@ require 'open-uri'
 require 'pry'
 
 class Interface
+  def start
+    welcome
+    prompt
+  end
+
   def welcome
     puts ''
     puts 'This scraper for Lazada.vn will find the best prices and filter the results exclusively for cat litter.'
@@ -21,13 +26,6 @@ class Interface
       'Please just type y for yes, or n for no'
     end
   end
-
-  def search
-    url = 'https://lazada.vn'
-    unparsed_page = open(url)
-    parsed_page = Nokogiri::HTML(unparsed_page)
-  end
-  
 end
 
 scraper = Interface.new
