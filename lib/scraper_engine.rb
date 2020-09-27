@@ -4,19 +4,17 @@ require 'pry'
 require_relative '../lib/csv_generator.rb'
 
 class ScraperEngine
-
   attr_accessor(:page, :url, :aluminum_suppliers, :supplier, :supplier_list, :parsed_page)
 
-  def initialize # target_url
+  def initialize
     target_url
     parse_url(@url)
     @aluminum_suppliers = []
-    # create_supplier_list
     @page = 1
   end
 
   def target_url
-    @url = "http://worldofmanufacturers.com/metals/aluminum"
+    @url = 'http://worldofmanufacturers.com/metals/aluminum'
   end
 
   def parse_url(target)
@@ -36,20 +34,17 @@ class ScraperEngine
 
   def display
     # @page = 1
-    while page <= @total_pages
+    while page <= 5 # @total_pages
       pagination_url = "http://worldofmanufacturers.com/metals/aluminum/page/#{@page}"
       puts pagination_url
       puts "Page: #{@page}"
       parse_url(pagination_url)
       create_supplier_list
       search
-      # @aluminum_suppliers << @supplier
       @page += 1
     end
     aluminum_suppliers_csv = SaveList.new(@aluminum_suppliers)
     aluminum_suppliers_csv.generate
-
-    binding.pry # here goes csv export method
   end
 
   def search
@@ -78,21 +73,14 @@ class ScraperEngine
     @url
   end
 
-  def order
+  def process_suppliers
     target_url
     parse_url(@url)
     create_supplier_list
     total_number_pages
+    display
   end
-
 end
 
-aluminum = ScraperEngine.new
-# aluminum.list
-# puts aluminum.show_url
-# puts aluminum.page_number
-# aluminum.create_supplier_list
-# puts aluminum.total_pages
-aluminum.order
-aluminum.display
-binding.pry
+# aluminum = ScraperEngine.new
+# aluminum.order

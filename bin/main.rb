@@ -2,7 +2,6 @@ require 'pry'
 require_relative '../lib/scraper_engine.rb'
 
 class ScraperInterface
-
   def start
     welcome
     prompt
@@ -13,8 +12,8 @@ class ScraperInterface
     loop do
       answer = gets.chomp.downcase.to_s
       if answer == 'y'
-        generate = ScraperEngine.new
-        generate.search
+        create = ScraperEngine.new
+        create.process_suppliers
         puts file_done
         break
       elsif answer == 'n'
@@ -37,7 +36,7 @@ class ScraperInterface
   end
 
   def file_done
-    text = " \n***** CSV file created *****\n \nYou will find a file named aluminum_suppliers.csv in the main directory of this repository\n \n"
+    text = " \n**** CSV file created ****\n \nYou will find a file named aluminum_suppliers.csv in this directory\n \n"
   end
 
 end
