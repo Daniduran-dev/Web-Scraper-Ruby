@@ -38,7 +38,6 @@ class ScraperInterface
   def file_done
     text = " \n**** CSV file created ****\n \nYou will find a file named aluminum_suppliers.csv in this directory\n \n"
   end
-
 end
 
 new_list = ScraperInterface.new

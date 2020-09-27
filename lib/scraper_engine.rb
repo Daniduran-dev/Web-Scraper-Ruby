@@ -28,12 +28,11 @@ class ScraperEngine
 
   def total_number_pages
     per_page = @supplier_list.count # 10
-    total_suppliers = @parsed_page.css('div.content p')[1].children[3].children.text.to_i # 4857
-    @total_pages = (total_suppliers / per_page.to_f).round # 486
+    total_suppliers = @parsed_page.css('div.content p')[1].children[3].children.text.to_i
+    @total_pages = (total_suppliers / per_page.to_f).round
   end
 
   def display
-    # @page = 1
     while page <= 5 # @total_pages
       pagination_url = "http://worldofmanufacturers.com/metals/aluminum/page/#{@page}"
       puts pagination_url
@@ -81,6 +80,3 @@ class ScraperEngine
     display
   end
 end
-
-# aluminum = ScraperEngine.new
-# aluminum.order
