@@ -38,3 +38,6 @@ class Scraper
 
   end
 end
+
+scraper = Scraper.new
+scraper.search

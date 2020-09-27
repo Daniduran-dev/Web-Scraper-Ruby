@@ -4,21 +4,22 @@ require 'pry'
 
 class ScraperEngine
 
-  # attr_accessor(:page, :url)
+  attr_accessor(:page, :url, :aluminum_suppliers, :supplier, :supplier_list, :parsed_page)
 
   def initialize # target_url
     target_url
-    parse_url
+    parse_url(@url)
+    @aluminum_suppliers = []
     # create_supplier_list
+    @page = 1
   end
 
   def target_url
-    @page = 1
-    @url = "http://worldofmanufacturers.com/metals/aluminum/page/#{@page}"
+    @url = "http://worldofmanufacturers.com/metals/aluminum"
   end
 
-  def parse_url
-    unparsed_page = URI.open(@url)
+  def parse_url(target)
+    unparsed_page = URI.open(target)
     @parsed_page = Nokogiri::HTML(unparsed_page)
   end
 
@@ -32,11 +33,37 @@ class ScraperEngine
     @total_pages = (total_suppliers / per_page.to_f).round # 486
   end
 
-  def search
-    while @page <= @total_pages
-      puts "hola #{@page}"
+  def display
+    # @page = 1
+    while page <= 3 # @total_pages
+      pagination_url = "http://worldofmanufacturers.com/metals/aluminum/page/#{@page}"
+      puts pagination_url
+      puts "Page: #{@page}"
+      parse_url(pagination_url)
+      create_supplier_list
+      search
+      # @aluminum_suppliers << @supplier
       @page += 1
     end
+    binding.pry # here goes csv export method
+  end
+
+  def search
+    @supplier_list.each do |card|
+      @supplier = {
+        company: card.css('h2 span').text,
+        address: card.css('div.panel-body')[0].children[4].text.gsub(/\n/, '').rstrip,
+        telephone: card.css('div.panel-body')[0].children[8].text.gsub(/\n/, '').rstrip,
+        country: ((card.css('div.panel-body')[0].children[4].text.gsub(/\n/, '').rstrip).split(',')).last.lstrip
+      }
+      @aluminum_suppliers << @supplier
+      puts "Added #{@supplier[:company]}"
+      # binding.pry
+    end
+  end
+
+  def create_csv
+    @aluminum_suppliers << @supplier
   end
 
   def page_number
@@ -49,7 +76,7 @@ class ScraperEngine
 
   def order
     target_url
-    parse_url
+    parse_url(@url)
     create_supplier_list
     total_number_pages
   end
@@ -63,4 +90,5 @@ aluminum = ScraperEngine.new
 # aluminum.create_supplier_list
 # puts aluminum.total_pages
 aluminum.order
-aluminum.search
+aluminum.display
+binding.pry
