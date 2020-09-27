@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
+require_relative '../lib/csv_generator.rb'
 
 class ScraperEngine
 
@@ -35,7 +36,7 @@ class ScraperEngine
 
   def display
     # @page = 1
-    while page <= 3 # @total_pages
+    while page <= @total_pages
       pagination_url = "http://worldofmanufacturers.com/metals/aluminum/page/#{@page}"
       puts pagination_url
       puts "Page: #{@page}"
@@ -45,6 +46,9 @@ class ScraperEngine
       # @aluminum_suppliers << @supplier
       @page += 1
     end
+    aluminum_suppliers_csv = SaveList.new(@aluminum_suppliers)
+    aluminum_suppliers_csv.generate
+
     binding.pry # here goes csv export method
   end
 
