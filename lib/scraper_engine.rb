@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
-require 'pry'
+# require 'pry'
+
 require_relative '../lib/csv_generator.rb'
 
 class ScraperEngine
@@ -9,6 +10,7 @@ class ScraperEngine
   def initialize
     target_url
     parse_url(@url)
+    create_supplier_list
     @aluminum_suppliers = []
     @page = 1
   end
@@ -54,22 +56,13 @@ class ScraperEngine
         telephone: card.css('div.panel-body')[0].children[8].text.gsub(/\n/, '').rstrip,
         country: ((card.css('div.panel-body')[0].children[4].text.gsub(/\n/, '').rstrip).split(',')).last.lstrip
       }
-      @aluminum_suppliers << @supplier
+      create_csv
       puts "Added #{@supplier[:company]}"
-      # binding.pry
     end
   end
 
   def create_csv
     @aluminum_suppliers << @supplier
-  end
-
-  def page_number
-    @page
-  end
-
-  def show_url
-    @url
   end
 
   def process_suppliers
