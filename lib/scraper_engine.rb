@@ -22,8 +22,6 @@ class ScraperEngine
     display
   end
 
-  private
-
   def target_url
     @url = 'http://worldofmanufacturers.com/metals/aluminum'
   end

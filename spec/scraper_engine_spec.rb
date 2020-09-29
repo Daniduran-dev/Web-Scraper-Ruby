@@ -1,5 +1,4 @@
 require_relative '../lib/scraper_engine.rb'
-require_relative '../bin/main.rb'
 
 describe ScraperEngine do
   let(:scraper_engine) { ScraperEngine.new }
