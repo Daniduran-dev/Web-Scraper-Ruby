@@ -1,7 +1,7 @@
 require_relative '../lib/scraper_engine.rb'
 
 class ScraperInterface
-  def start
+  def process
     puts welcome
     prompt
   end
@@ -43,4 +43,4 @@ class ScraperInterface
 end
 
 new_list = ScraperInterface.new
-new_list.start
+new_list.process
