@@ -4,7 +4,7 @@ require 'open-uri'
 require_relative '../lib/csv_generator.rb'
 
 class ScraperEngine
-  attr_accessor(:page, :url, :aluminum_suppliers, :supplier, :supplier_list, :parsed_page)
+  attr_reader(:page, :url, :aluminum_suppliers, :supplier, :supplier_list, :parsed_page)
 
   def initialize
     target_url
@@ -13,6 +13,8 @@ class ScraperEngine
     @aluminum_suppliers = []
     @page = 1
   end
+
+  
 
   def target_url
     @url = 'http://worldofmanufacturers.com/metals/aluminum'
@@ -57,7 +59,6 @@ class ScraperEngine
         address: card.css('div.panel-body')[0].children[4].text.gsub(/\n/, '').rstrip,
         telephone: card.css('div.panel-body')[0].children[8].text.gsub(/\n/, '').rstrip,
         country: country_level_c
-        # country: ((card.css('div.panel-body')[0].children[4].text.gsub(/\n/, '').rstrip).split(',')).last.lstrip
       }
       create_csv
       puts "Added #{@supplier[:company]}"

@@ -6,6 +6,8 @@ class ScraperInterface
     prompt
   end
 
+  private
+
   def prompt
     puts question
     loop do
@@ -23,6 +25,7 @@ class ScraperInterface
       end
     end
   end
+
   # rubocop:disable Layout/LineLength
 
   def welcome
