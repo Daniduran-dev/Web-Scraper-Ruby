@@ -1,6 +1,7 @@
 require_relative '../bin/main.rb'
 
 let(:scraperinterface) { ScraperInterface.new }
+let(:answer) { 'y' }
 # rubocop:disable Layout/LineLength
 describe ScraperInterface do
   describe '#welcome' do

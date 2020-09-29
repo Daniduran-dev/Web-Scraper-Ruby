@@ -2,7 +2,7 @@ require_relative '../lib/scraper_engine.rb'
 
 class ScraperInterface
   def start
-    welcome
+    puts welcome
     prompt
   end
 
@@ -44,6 +44,3 @@ end
 
 new_list = ScraperInterface.new
 new_list.start
-# puts new_list.welcome
-# puts new_list.question
-# puts new_list.file_done
