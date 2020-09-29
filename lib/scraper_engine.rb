@@ -44,7 +44,7 @@ class ScraperEngine
   end
 
   def display
-    while page <= 2 # @total_pages
+    while page <= 2
       pagination_url = "http://worldofmanufacturers.com/metals/aluminum/page/#{@page}"
       puts pagination_url
       puts "Page: #{@page}"
