@@ -1,4 +1,3 @@
-require 'pry'
 require_relative '../lib/scraper_engine.rb'
 
 class ScraperInterface
@@ -38,10 +37,13 @@ class ScraperInterface
   # rubocop:enable Layout/LineLength
 
   def file_done
-    text = "\n**** CSV file created ****\n\nYou will find a file named aluminum_suppliers.csv in this directory\n\n"
+    text = "\n**** CSV file created ****\n\nYou will find a file named aluminum_suppliers.csv in this folder\n\n"
     text
   end
 end
 
 new_list = ScraperInterface.new
 new_list.start
+# puts new_list.welcome
+# puts new_list.question
+# puts new_list.file_done
