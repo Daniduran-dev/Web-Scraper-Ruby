@@ -14,7 +14,15 @@ class ScraperEngine
     @page = 1
   end
 
-  
+  def process_suppliers
+    target_url
+    parse_url(@url)
+    create_supplier_list
+    total_number_pages
+    display
+  end
+
+  private
 
   def target_url
     @url = 'http://worldofmanufacturers.com/metals/aluminum'
@@ -67,13 +75,5 @@ class ScraperEngine
 
   def create_csv
     @aluminum_suppliers << @supplier
-  end
-
-  def process_suppliers
-    target_url
-    parse_url(@url)
-    create_supplier_list
-    total_number_pages
-    display
   end
 end
