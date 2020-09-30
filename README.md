@@ -8,6 +8,10 @@ This scraper will look for aluminum manufacturers in the huge database of [World
 
 [![Run on Repl.it](https://repl.it/badge/github/Daniduran-dev/Web-Scraper-Ruby)](https://repl.it/github/Daniduran-dev/Web-Scraper-Ruby)
 
+## Video presentation
+
+[Link to Loom presentation](https://www.loom.com/share/3fb09f427de34aa4869526c310459902)
+
 ## Built with
 
 - Ruby
