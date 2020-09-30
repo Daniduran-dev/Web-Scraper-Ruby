@@ -26,22 +26,17 @@ class ScraperInterface
     end
   end
 
-  # rubocop:disable Layout/LineLength
-
   def welcome
-    greeting = "\nThis scraper for World of Manufacturers site database is going to generate a list of aluminum manufacturers\n"
-    greeting
+    "\nThis scraper for World of Manufacturers site database is going to generate a list of aluminum manufacturers\n"
   end
 
   def question
-    ask = "\n***** This will take a while since we will look through the whole database to give you an updated list *****\n\n\nReady to start scrapping? (y/n)"
-    ask
+    ask = 'Ready to start scrapping? (y/n)'
+    "\n**** This will take a while. We will look through the whole database to create an updated list ****\n\n\n#{ask}"
   end
-  # rubocop:enable Layout/LineLength
 
   def file_done
-    text = "\n**** CSV file created ****\n\nYou will find a file named aluminum_suppliers.csv in this folder\n\n"
-    text
+    "\n**** CSV file created ****\n\nYou will find a file named aluminum_suppliers.csv in this folder\n\n"
   end
 end
 
